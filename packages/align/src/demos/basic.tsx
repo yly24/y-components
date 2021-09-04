@@ -1,3 +1,4 @@
+import React from 'react'
 import Align from 'y-align'
 
 const AlignDemo = () => {
