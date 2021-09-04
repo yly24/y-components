@@ -1,7 +1,7 @@
 import Align from 'y-align'
 
 const AlignDemo = () => {
-  return <Align className="demo-cls"/>
+  return <Align className="demo"/>
 }
 
 export default AlignDemo
