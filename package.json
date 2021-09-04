@@ -1,6 +1,6 @@
 {
   "name": "y-components",
-  "description": "YComponents",
+  "description": "react component",
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "start": "dumi dev",

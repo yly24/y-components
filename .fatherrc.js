@@ -5,5 +5,6 @@ export default {
   extraBabelPlugins: ['version'],
   pkgs: [
     'align',
+    'collapse'
   ],
 }
