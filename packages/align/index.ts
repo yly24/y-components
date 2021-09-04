@@ -1,3 +1,1 @@
-import Align from './src'
-
-export default Align
+export { default } from './src' 
