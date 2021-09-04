@@ -1,7 +1,6 @@
 {
   "name": "y-components",
   "description": "YComponents",
-  "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "start": "dumi dev",
