@@ -1,1 +1,1 @@
-export { default } from './src/align' 
+export { default } from './src' 

@@ -1,1 +1,1 @@
-export { default } from './src/collapse';
+export { default } from './src';
