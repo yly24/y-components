@@ -15,6 +15,7 @@
   "devDependencies": {
     "@types/classnames": "^2.2.11",
     "@types/jest": "^24.0.13",
+    "@types/shallowequal": "^1.1.1",
     "babel-plugin-version": "^0.2.3",
     "dumi": "^1.1.7",
     "father-build": "^1.19.2",
@@ -26,6 +27,10 @@
   },
   "dependencies": {
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "classnames": "^2.3.1",
+    "rc-motion": "^2.4.4",
+    "rc-util": "^5.13.2",
+    "shallowequal": "^1.1.0"
   }
 }
