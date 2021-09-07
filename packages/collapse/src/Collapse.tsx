@@ -59,13 +59,84 @@ class Collapse extends React.Component<CollapseProps, CollapseState> {
       !shallowequal(this.state, nextState)
     );
   }
-  onClickItem = () => {};
-  getNewChild() {}
+  
+  setActiveKey = (activeKey: React.Key[]) => {
+    if(!('activeKey' in this.props)) {
+      this.setState({activeKey})
+    }
+    this.props.onChange(this.props.accordion ? activeKey[0]: activeKey)
+  };
+  
+  onClickItem = (key: React.Key) => {
+    let {activeKey} = this.state
+    
+    if(this.props.accordion) {
+      activeKey = activeKey[0] === key ? [] : [key]
+    } else {
+      activeKey = [...activeKey]
+      const index = activeKey.indexOf(key)
+      if(index > -1) {
+        activeKey.splice(index, 1)
+      } else {
+        activeKey.push(key)
+      }
+    }
+    
+    this.setActiveKey(activeKey)
+  };
+  
+  getNewChild(child: React.ReactElement, index: number) {
+    if (!child) return null;
+    const { activeKey } = this.state;
+    const {
+      prefixCls,
+      openMotion,
+      accordion,
+      destroyInactivePanel: rootDestroyInactivePanel,
+      expandIcon,
+      collapsible,
+    } = this.props;
+    const key = child.key || String(index);
+    
+    let isActive = false
+    if(accordion) {
+      isActive = activeKey[0] === key
+    } else {
+      isActive = activeKey.indexOf(key) > -1
+    }
+    
+    const {
+      header,
+      headerClass,
+      destroyInactivePanel,
+      collapsible: childCollapsible,
+    } = child.props;
+    
+    const mergeCollapsible = childCollapsible ?? collapsible
+    
+    const props = {
+      key,
+      panelKey: key,
+      header,
+      headerClass,
+      isActive,
+      prefixCls,
+      destroyInactivePanel: destroyInactivePanel ?? rootDestroyInactivePanel,
+      openMotion,
+      accordion,
+      children: child.props.children,
+      onClickItem: mergeCollapsible === 'disable' ? null: this.onClickItem,
+      expandIcon,
+      collapsible: mergeCollapsible,
+    }
+    
+    return React.cloneElement(child, props)
+  }
+  
   getItems() {
     const { children } = this.props;
     return toArray(children).map(this.getNewChild);
   }
-  setActiveKey = () => {};
   render() {
     const { prefixCls, className, style, accordion } = this.props;
     const collapseClassName = classNames({
