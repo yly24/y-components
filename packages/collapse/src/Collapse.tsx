@@ -2,7 +2,8 @@ import * as React from 'react';
 import classNames from 'classnames';
 import shallowequal from 'shallowequal';
 import { CollapseProps, CollapsibleType } from './interface';
-import { toArray } from 'rc-util';
+import toArray from 'rc-util/lib/Children/toArray';
+import CollapsePanel from './Panel'
 
 function getActiveKeysArray(activeKey: React.Key | React.Key[]) {
   let currentActiveKey = activeKey;
@@ -28,7 +29,7 @@ class Collapse extends React.Component<CollapseProps, CollapseState> {
     destroyInactivePanel: false,
   };
 
-  // static Panel = CollapsePanel TODO 这个作用是什么
+  static Panel = CollapsePanel
 
   constructor(props: CollapseProps) {
     super(props);
@@ -85,7 +86,7 @@ class Collapse extends React.Component<CollapseProps, CollapseState> {
     this.setActiveKey(activeKey)
   };
   
-  getNewChild(child: React.ReactElement, index: number) {
+  getNewChild = (child: React.ReactElement, index: number) => {
     if (!child) return null;
     const { activeKey } = this.state;
     const {
@@ -112,7 +113,7 @@ class Collapse extends React.Component<CollapseProps, CollapseState> {
       collapsible: childCollapsible,
     } = child.props;
     
-    const mergeCollapsible = childCollapsible ?? collapsible
+    const mergeCollapsible: CollapsibleType = childCollapsible ?? collapsible
     
     const props = {
       key,
@@ -125,7 +126,7 @@ class Collapse extends React.Component<CollapseProps, CollapseState> {
       openMotion,
       accordion,
       children: child.props.children,
-      onClickItem: mergeCollapsible === 'disable' ? null: this.onClickItem,
+      onClickItem: mergeCollapsible === 'disabled' ? null: this.onClickItem,
       expandIcon,
       collapsible: mergeCollapsible,
     }
@@ -154,3 +155,5 @@ class Collapse extends React.Component<CollapseProps, CollapseState> {
     );
   }
 }
+
+export default Collapse

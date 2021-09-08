@@ -1,8 +1,12 @@
 import React from 'react';
-import YCollapse from 'y-collapse';
+import YCollapse, { Panel } from 'y-collapse';
 
 const YCollapseDemo = () => {
-  return <YCollapse />;
+  return <YCollapse>
+    <Panel header="title">content</Panel>
+    <Panel header="title">content</Panel>
+    <Panel header="title">content</Panel>
+  </YCollapse>;
 };
 
-export default YCollapseDemo
+export default YCollapseDemo;

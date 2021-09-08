@@ -17,7 +17,7 @@ export interface CollapseProps {
   collapsible: CollapsibleType;
 }
 
-export interface CollapsePaneProps {
+export interface CollapsePanelProps {
   id?: string;
   header?: string | React.ReactNode;
   prefixCls?: string;
