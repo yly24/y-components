@@ -5,7 +5,5 @@
 ## Usage
 
 ```
-const collapse = require('collapse');
-
 // TODO: DEMONSTRATE API
 ```
