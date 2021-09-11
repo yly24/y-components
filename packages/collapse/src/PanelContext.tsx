@@ -18,6 +18,8 @@ const PanelContent = React.forwardRef<
 
   const [rendered, setRendered] = React.useState(isActive || forceRender);
 
+  
+  // TODO 这里为什么不把 rendered 置为 false
   React.useEffect(
     () => {
       if (isActive || forceRender) {

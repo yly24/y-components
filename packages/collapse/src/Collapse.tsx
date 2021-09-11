@@ -68,7 +68,7 @@ class Collapse extends React.Component<CollapseProps, CollapseState> {
     this.props.onChange(this.props.accordion ? activeKey[0]: activeKey)
   };
   
-  onClickItem = (key: React.Key) => {
+  onItemClick = (key: React.Key) => {
     let {activeKey} = this.state
     
     if(this.props.accordion) {
@@ -126,7 +126,7 @@ class Collapse extends React.Component<CollapseProps, CollapseState> {
       openMotion,
       accordion,
       children: child.props.children,
-      onClickItem: mergeCollapsible === 'disabled' ? null: this.onClickItem,
+      onItemClick: mergeCollapsible === 'disabled' ? null: this.onItemClick,
       expandIcon,
       collapsible: mergeCollapsible,
     }
