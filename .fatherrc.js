@@ -1,3 +1,5 @@
+
+// TODO 获取整个 packages 下的一级目录
 export default {
   esm: { type: 'babel' },
   cjs: { type: 'babel' },
@@ -5,6 +7,7 @@ export default {
   extraBabelPlugins: ['version'],
   pkgs: [
     'align',
-    'collapse'
+    'collapse',
+    'dialog'
   ],
 }
