@@ -18,8 +18,9 @@ export default class Dialog extends React.Component<IDialogPropsTypes, any> {
   };
 
   dialogRef: any;
-  borderRef: any;
+  bodyRef: any;
   footerRef: any;
+  headerRef: any;
   wrapRef: any;
 
   componentWillUnmount() {
@@ -95,13 +96,114 @@ export default class Dialog extends React.Component<IDialogPropsTypes, any> {
     return maskElement;
   }
 
-  getDialogElement() {}
+  getDialogElement() {
+    const props = this.props;
+    const { closable, prefixCls } = props;
+    let footer;
+    if (props.footer) {
+      footer = (
+        <div
+          className={`${prefixCls}-footer`}
+          ref={el => (this.footerRef = el)}
+        >
+          {props.footer}
+        </div>
+      );
+    }
 
-  onAnimationAppear = () => {};
-  onAnimationLeave = () => {};
+    let header;
+    if (props.title) {
+      header = (
+        <div
+          className={`${prefixCls}-header`}
+          ref={el => (this.headerRef = el)}
+        >
+          <div className={`${prefixCls}-title`}>{props.title}</div>
+        </div>
+      );
+    }
 
-  close = e => {};
-  onMaskClick = e => {};
+    let closer;
+    if (closable) {
+      closer = (
+        <button
+          className={`${prefixCls}-close`}
+          aria-label="Close"
+          onClick={this.close}
+        >
+          <span className={`${prefixCls}-close-x`} />
+        </button>
+      );
+    }
+
+    const transitionName = this.getTransitionName();
+    const dialogElement = (
+      <LazyRenderBox
+        key="dialog-element"
+        role="document"
+        ref={el => (this.dialogRef = el)}
+        style={props.style || {}}
+        className={`${prefixCls} ${props.className || ''}`}
+        visible={props.visible}
+      >
+        <div className={`${prefixCls}-content`}>
+          {closer}
+          {header}
+          <div
+            className={`${prefixCls}-body`}
+            style={props.style}
+            ref={el => (this.bodyRef = el)}
+          >
+            {props.children}
+          </div>
+          {footer}
+        </div>
+      </LazyRenderBox>
+    );
+
+    return (
+      <Animate
+        key="dialog"
+        showProp="visible"
+        onAppear={this.onAnimationAppear}
+        onLeave={this.onAnimationLeave}
+        transitionName={transitionName}
+        component=""
+        transitionAppear
+      >
+        {dialogElement}
+      </Animate>
+    );
+  }
+
+  onAnimationAppear = () => {
+    document.body.style.overflow = 'hidden';
+  };
+
+  onAnimationLeave = () => {
+    document.body.style.overflow = 'hidden';
+
+    if (this.wrapRef) {
+      this.wrapRef.style.display = 'none';
+    }
+    if (this.props.onAnimateLeave) {
+      this.props.onAnimateLeave();
+    }
+    if (this.props.afterClose) {
+      this.props.afterClose();
+    }
+  };
+
+  close = e => {
+    if (this.props.onClose) {
+      this.props.onClose(e);
+    }
+  };
+  onMaskClick = e => {
+    if (e.target === e.currentTarget) {
+      this.close(e);
+    }
+  };
 
   render() {
     const { props } = this;

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import IDialogPropsTypes from './IDialogPropsTypes';
+import Dialog from './Dialog'
 
 function noop() {}
 
@@ -62,10 +63,10 @@ export default class DialogWrap extends React.Component<
     });
 
     return (
-      <div
+      <Dialog
         {...props}
         visible={visible}
-        onAnimationLeave={this.removeContainer}
+        onAnimateLeave={this.removeContainer}
         ref={this.saveRef}
       />
     );
@@ -89,7 +90,7 @@ export default class DialogWrap extends React.Component<
       if (!IS_REACT_16) {
         ReactDOM.unmountComponentAtNode(this.container);
       }
-      (this.container as any).parentNode.removeChildren(this.container);
+      (this.container as any).parentNode.removeChild(this.container);
       this.container = null;
     }
   };
