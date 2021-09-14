@@ -80,12 +80,13 @@
     animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
     animation-play-state: paused;
   }
-  
-  &-zoom-enter&-zoom-enter-active, &-zoom-appear&-zoom-appear-active {
+
+  &-zoom-enter&-zoom-enter-active,
+  &-zoom-appear&-zoom-appear-active {
     animation-name: rcDialogZoomIn;
     animation-play-state: running;
   }
-  
+
   &-zoom-leave&-zoom-leave-active {
     animation-name: rcDialogZoomOut;
     animation-play-state: running;
@@ -102,13 +103,21 @@
     }
   }
 
-  @keyframes rdDialogZoomOut {
+  @keyframes rcDialogZoomOut {
     0% {
       transform: scale(1, 1);
     }
 
     100% {
+      opacity: 0;
       transform: scale(0, 0);
     }
+  }
+}
+
+@media (min-width: 768px) {
+  .@{prefixCls} {
+    width: 600px;
+    margin: 30px auto;
   }
 }

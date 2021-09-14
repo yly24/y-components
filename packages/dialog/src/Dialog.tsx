@@ -182,7 +182,6 @@ export default class Dialog extends React.Component<IDialogPropsTypes, any> {
 
   onAnimationLeave = () => {
     document.body.style.overflow = 'hidden';
-
     if (this.wrapRef) {
       this.wrapRef.style.display = 'none';
     }
@@ -210,7 +209,7 @@ export default class Dialog extends React.Component<IDialogPropsTypes, any> {
     const { prefixCls, maskClosable } = props;
     const style = this.getWrapStyle();
     if (!props.visible) {
-      style.display = 'none';
+      style.display = null;
     }
 
     return (
