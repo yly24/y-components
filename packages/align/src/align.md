@@ -12,4 +12,4 @@ nav:
 
 <code src="./demos/basic.tsx" />
 
-<API></API>
+<API  src="./index.tsx"></API>
