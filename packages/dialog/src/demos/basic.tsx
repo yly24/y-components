@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Dialog from 'y-dialog';
 import '../assets/index.less';
 const Demo = () => {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
   
   return (
     <div>
