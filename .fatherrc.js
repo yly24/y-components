@@ -8,6 +8,7 @@ export default {
   pkgs: [
     'align',
     'collapse',
-    'dialog'
+    'dialog',
+    'tooltip'
   ],
 }
