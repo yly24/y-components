@@ -66,6 +66,11 @@ const getScroll = (w, top) => {
 const getScrollTop = w => getScroll(w, true);
 const getScrollLeft = w => getScroll(w, false);
 
+/**
+ * 相对document的位置
+ * @param {*} el
+ * @returns
+ */
 const getOffset = el => {
   const pos = getClientPosition(el);
   const doc = el.ownerDocument;
@@ -74,6 +79,44 @@ const getOffset = el => {
   pos.top += getScrollTop(w);
   return pos;
 };
+
+const isWindow = obj => {
+  return obj !== null && obj !== undefined && obj === obj.window;
+};
+
+const domUtils = {};
+
+const MARGIN_INDEX = 0;
+const BORDER_INDEX = 1;
+
+/**
+ * 得到元素的大小
+ * @param {*} ele 
+ * @param {*} name 
+ * @param {*} ex 
+ * padding： (css width) + padding
+ * border: (css width) + padding + border
+ * margin: (css width) + padding + border + margin
+ */
+const getWH = (ele, name, ex) => {
+  
+}
+
+const getWHIgnoreDisplay = (...args) => {
+  let val;
+  const ele = args[0]
+  
+}
+
+each(['width', 'height'], name => {
+  const first = name.chartAt(0).toUpperCase() + name.slice(1);
+  domUtils[`outer${first}`] = (el, includeMargin) => {
+    return (
+      el &&
+      getWHIgnoreDisplay(el, name, includeMargin ? MARGIN_INDEX : BORDER_INDEX)
+    );
+  };
+});
 
 const utils = {
   each,
