@@ -11,3 +11,5 @@ function alignElement(el, refNode, align) {
   
   return doAlign(el, refNodeRegion, align, isTargetNotOutOfVisible)
 }
+
+export default alignElement
