@@ -127,4 +127,10 @@ const utils = {
       return getOffset(el);
     }
   },
+  getWindowScrollLeft(w) {
+    return getScrollLeft(w)
+  },
+  getWindowScrollTop(w) {
+    return getScrollTop(w)
+  }
 };

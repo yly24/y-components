@@ -18,8 +18,8 @@ const getRegion = node => {
   } else {
     const win = utils.getWindow(node);
     offset = {
-      left: utils.getWindowScrollLeft,
-      top: utils.getWindowScrollTop,
+      left: utils.getWindowScrollLeft(win),
+      top: utils.getWindowScrollTop(win),
     };
     w = utils.viewPortWidth(win);
     h = utils.viewPortHeight(win);
