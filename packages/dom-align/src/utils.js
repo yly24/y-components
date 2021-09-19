@@ -4,6 +4,22 @@ const each = (arr, fn) => {
   }
 };
 
+const isWindow = obj => {
+  return obj !== null && obj !== undefined && obj === obj.window;
+};
+
+const getDocument = node => {
+  if (isWindow(node)) {
+    return node.document;
+  }
+
+  if (node.nodeType === 9) {
+    return node;
+  }
+
+  return node.ownerDocument;
+};
+
 const getClientPosition = ele => {
   let box;
   let x;
@@ -80,10 +96,6 @@ const getOffset = el => {
   return pos;
 };
 
-const isWindow = obj => {
-  return obj !== null && obj !== undefined && obj === obj.window;
-};
-
 const domUtils = {};
 
 const MARGIN_INDEX = 0;
@@ -91,22 +103,41 @@ const BORDER_INDEX = 1;
 
 /**
  * 得到元素的大小
- * @param {*} ele 
- * @param {*} name 
- * @param {*} ex 
+ * @param {*} ele
+ * @param {*} name
+ * @param {*} ex
  * padding： (css width) + padding
  * border: (css width) + padding + border
  * margin: (css width) + padding + border + margin
  */
-const getWH = (ele, name, ex) => {
-  
-}
+const getWH = (ele, name, ex) => {};
 
 const getWHIgnoreDisplay = (...args) => {
   let val;
-  const ele = args[0]
-  
-}
+  const ele = args[0];
+};
+
+const css = (el, name, v) => {
+  let value = v;
+  if (typeof name === 'object') {
+    for (const i in name) {
+      if (name.hasOwnProperty(i)) {
+        css(el, i, name[i]);
+      }
+    }
+    return void 0;
+  }
+
+  if (typeof value !== 'undefined') {
+    if (typeof value === 'number') {
+      value = `${value}px`;
+    }
+    ele.style[name] = value;
+    return void 0;
+  }
+
+  return window.getComputedStyle(el, name);
+};
 
 each(['width', 'height'], name => {
   const first = name.chartAt(0).toUpperCase() + name.slice(1);
@@ -128,9 +159,9 @@ const utils = {
     }
   },
   getWindowScrollLeft(w) {
-    return getScrollLeft(w)
+    return getScrollLeft(w);
   },
   getWindowScrollTop(w) {
-    return getScrollTop(w)
-  }
+    return getScrollTop(w);
+  },
 };
