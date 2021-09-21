@@ -38,6 +38,7 @@ const doAlign = (el, tgtRegion, align, isTgtRegionVisible) => {
     (overflow.adjustX || overflow.adjustY) &&
     isTgtRegionVisible
   ) {
+    
   }
 
   if (newEleRegion.width !== elRegion.width) {

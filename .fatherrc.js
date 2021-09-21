@@ -9,6 +9,7 @@ export default {
     'align',
     'collapse',
     'dialog',
-    'tooltip'
+    'tooltip',
+    'dom-align'
   ],
 }
