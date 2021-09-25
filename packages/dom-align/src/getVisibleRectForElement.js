@@ -1,5 +1,5 @@
 import getOffsetParent from './getOffsetParent';
-import utils from 'utils';
+import utils from './utils';
 import isAncestorFixed from './isAncestorFixed';
 
 const getVisibleRectForElement = (element, alwaysByViewPort) => {
@@ -10,7 +10,7 @@ const getVisibleRectForElement = (element, alwaysByViewPort) => {
     bottom: Infinity,
   };
 
-  const el = getOffsetParent(el);
+  const el = getOffsetParent(element);
   const doc = utils.getDocument(element);
   const win = doc.defaultView || doc.parentWindow;
   const body = doc.body;

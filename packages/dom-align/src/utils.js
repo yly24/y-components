@@ -1,14 +1,14 @@
-const each = (arr, fn) => {
+export const each = (arr, fn) => {
   for (let i = 0; i < arr.length; i++) {
     fn(arr[i]);
   }
 };
 
-const isWindow = obj => {
+export const isWindow = obj => {
   return obj !== null && obj !== undefined && obj === obj.window;
 };
 
-const getDocument = node => {
+export const getDocument = node => {
   if (isWindow(node)) {
     return node.document;
   }
@@ -20,7 +20,7 @@ const getDocument = node => {
   return node.ownerDocument;
 };
 
-const getClientPosition = ele => {
+export const getClientPosition = ele => {
   let box;
   let x;
   let y;
@@ -140,7 +140,7 @@ const css = (el, name, v) => {
 };
 
 each(['width', 'height'], name => {
-  const first = name.chartAt(0).toUpperCase() + name.slice(1);
+  const first = name.charAt(0).toUpperCase() + name.slice(1);
   domUtils[`outer${first}`] = (el, includeMargin) => {
     return (
       el &&
@@ -150,6 +150,8 @@ each(['width', 'height'], name => {
 });
 
 const utils = {
+  ...domUtils,
+  getDocument,
   each,
   offset(el, value, option) {
     if (typeof value !== 'undefined') {
@@ -164,4 +166,7 @@ const utils = {
   getWindowScrollTop(w) {
     return getScrollTop(w);
   },
+  isWindow,
 };
+
+export default utils;

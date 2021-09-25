@@ -1,5 +1,5 @@
 import React from 'react';
-import domAlign from 'dom-align';
+import domAlign from 'y-dom-align';
 
 const $id = (id: string) => {
   return document.getElementById(id);

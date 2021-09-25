@@ -2,6 +2,7 @@ import utils from '../utils';
 import getVisibleRectForElement from '../getVisibleRectForElement';
 import getRegion from '../getRegion';
 
+// http://yiminghe.iteye.com/blog/1124720
 const doAlign = (el, tgtRegion, align, isTgtRegionVisible) => {
   let points = align.points;
   let offset = align.offset || [];
@@ -38,7 +39,6 @@ const doAlign = (el, tgtRegion, align, isTgtRegionVisible) => {
     (overflow.adjustX || overflow.adjustY) &&
     isTgtRegionVisible
   ) {
-    
   }
 
   if (newEleRegion.width !== elRegion.width) {
@@ -71,3 +71,5 @@ const doAlign = (el, tgtRegion, align, isTgtRegionVisible) => {
     },
   );
 };
+
+export default doAlign;
